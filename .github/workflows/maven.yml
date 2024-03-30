@@ -33,7 +33,7 @@ jobs:
     - name: Build & push Docker image
       uses: mr-smithers-excellent/docker-build-push@v6
       with:
-       image: upendra0609/project-management-user_service:latest
+       image: upendra0609/project-management-user_service
        tags: latest
        registry: docker.io
        dockerfile: Dockerfile
@@ -45,7 +45,7 @@ jobs:
     runs-on: [aws-ec2]
     steps:
     - name: Pull Image from docker hub
-      run: docker pull upendra0609/project-management-user_service:latest
+      run: docker pull upendra0609/project-management-user_service
     - name: Delete old container
       run: docker rm -f project-management-user_service-container
     - name: Run Docker container
