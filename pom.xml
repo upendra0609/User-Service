@@ -119,7 +119,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		<finalName>user-service</finalName>
+		<finalName>project-management-user_service</finalName>
 	</build>
 	
 </project>
