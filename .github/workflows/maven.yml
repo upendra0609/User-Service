@@ -54,7 +54,7 @@ jobs:
         if: env.DOCKER_HUB_PRIVATE == 'true'  # Only run this step if your image is private
 
       - name: Pull Image from Docker Hub
-        run: docker pull upendra0609/project-management-user_service
+        run: docker pull upendra0609/project-management-user_service:latest
 
       - name: Check if old container exists
         id: old-container

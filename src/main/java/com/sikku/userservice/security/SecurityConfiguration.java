@@ -33,6 +33,23 @@ public class SecurityConfiguration {
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider()).addFilterBefore(
                         jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+        
+//        http.cors(cors -> {
+//			CorsConfigurationSource configurationSource = req -> {
+//				CorsConfiguration corsConfiguration = new CorsConfiguration();
+//				corsConfiguration.setAllowedOrigins(List.of("http://localhost:5173", "https://upendra0609.github.io/task-management/"));
+//				corsConfiguration.setAllowedMethods(List.of("*"));
+//				corsConfiguration.setAllowCredentials(true);
+//				corsConfiguration.setAllowedHeaders(List.of("*", ""));
+//				corsConfiguration.setExposedHeaders(List.of("Authorization"));
+//				corsConfiguration.setMaxAge(3600L);
+//				return corsConfiguration;
+//			};
+//			cors.configurationSource(configurationSource);
+//		});
+
+		http.securityContext(context -> context.requireExplicitSave(true));
+        
         return http.build();
     }
 

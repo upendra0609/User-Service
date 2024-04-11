@@ -12,9 +12,11 @@ import com.sikku.userservice.repositories.IUserRepository;
 import com.sikku.userservice.services.IUserService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class UserServiceImpl implements IUserService {
 
 	private final IUserRepository userRepository;
@@ -24,6 +26,7 @@ public class UserServiceImpl implements IUserService {
 	 */
 	@Override
 	public UserDetailsService userDetailsService() {
+		log.info("UserServiceImpl=> userDetailsService()");
 		return new UserDetailsService() {
 			@Override
 			public UserDetails loadUserByUsername(String username) {
@@ -44,12 +47,14 @@ public class UserServiceImpl implements IUserService {
 //    }
 	
 	public User loadUserByUsername(String username) {
+		log.info("UserServiceImpl=> loadUserByUsername()");
 		return userRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
 	}
 
 
 	@Override
 	public List<User> getAllUsers() {
+		log.info("UserServiceImpl=> getAllUsers()");
 		return userRepository.findAll();
 	}
 

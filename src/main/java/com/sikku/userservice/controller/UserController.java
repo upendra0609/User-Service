@@ -13,10 +13,12 @@ import com.sikku.userservice.services.IUserService;
 import com.sikku.userservice.services.impl.JwtServiceImpl;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/api/v1/user")
 @RequiredArgsConstructor
+@Slf4j
 public class UserController {
 
 	private final JwtServiceImpl jwtService;
@@ -24,14 +26,17 @@ public class UserController {
 
 	@GetMapping("/profile")
 	public ResponseEntity<User> getUserProfile(@RequestHeader("Authorization") String jwtToken) {
+		log.info("UserController=> getUserProfile()");
 		jwtToken = jwtToken.split(" ")[1].trim();
-		String userName = jwtService.extractUserName(jwtToken);		
+		log.info("UserController=> getUserProfile() jwtToken: {}", jwtToken);
+		String userName = jwtService.extractUserName(jwtToken);
+		log.info("UserController=> getUserProfile() userName: {}", userName);
 		return ResponseEntity.ok(userService.loadUserByUsername(userName));
 	}
 	
 	@GetMapping("/all")
 	public ResponseEntity<List<User>> getAllUsers() {
-		//
+		log.info("UserController=> getAllUsers()");
 		return ResponseEntity.ok(userService.getAllUsers());
 	}
 
