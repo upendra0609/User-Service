@@ -29,7 +29,7 @@ public class AuthenticationServiceImpl implements IAuthenticationService {
 	@Override
 	public JwtAuthenticationResponse signup(SignUpRequest request) {
 		log.info("AuthenticationServiceImpl()=> signup New user is trying to register: {}", request.getEmail());
-		var user = User.builder().firstName(request.getFirstName()).lastName(request.getLastName())
+		var user = User.builder().firstName(request.getFullName())
 				.email(request.getEmail()).password(passwordEncoder.encode(request.getPassword())).role(Role.USER)
 				.phoneNumber(request.getPhoneNumber()).build();		
 		userRepository.save(user);
